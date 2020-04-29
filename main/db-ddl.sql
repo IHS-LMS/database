@@ -266,3 +266,38 @@ CREATE TABLE [Department].[Enrollment](
     DepartmentID INT NOT NULL, FOREIGN KEY(DepartmentID) REFERENCES [Department].[Department](ID),
     EnrollDate DATE NOT NULL
 )
+
+ALTER TABLE [HumanResources].[Staff] ADD
+CONSTRAINT FK_Staff_Address 
+FOREIGN KEY (ID)
+REFERENCES [HumanResources].[Address](ID)
+
+ALTER TABLE [HumanResources].[Staff] ADD
+CONSTRAINT FK_Teacher_Staff
+FOREIGN KEY (ID)
+REFERENCES [HumanResources].[Teacher](ID)
+
+ALTER TABLE [HumanResources].[Staff] ADD
+CONSTRAINT FK_Employee_Staff
+FOREIGN KEY (ID)
+REFERENCES [HumanResources].[Employee](ID)
+
+ALTER TABLE [Department].[DeptCourse] ADD
+CONSTRAINT FK_Attendance_DeptCourse
+FOREIGN KEY (ID)
+REFERENCES [Department].[Attendance](ID)
+
+ALTER TABLE [Department].[TimeTable] ADD
+CONSTRAINT FK_TimeTable_DeptCourse
+FOREIGN KEY (ID)
+REFERENCES [Department].[DeptCourse](ID)
+
+ALTER TABLE [Department].[HostelAttendance] ADD
+CONSTRAINT FK_HostelAttendance_Hostel
+FOREIGN KEY (ID)
+REFERENCES [Department].[Hostel](ID)
+
+ALTER TABLE [Department].[HostelAttendance] ADD
+CONSTRAINT FK_HostelAttendance_HostelRegistration
+FOREIGN KEY (ID)
+REFERENCES [Department].[HostelRegistration](ID)
