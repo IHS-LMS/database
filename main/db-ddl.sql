@@ -192,13 +192,13 @@ CREATE TABLE [Department].[Room](
 )
 
 CREATE TABLE [Department].[HostelEmployee](
-    ID INT PRIMARY KEY NOT NULL, FOREIGN KEY(ID) REFERENCES [HumanResources].[Employee](ID),
+    ID INT PRIMARY KEY NOT NULL, FOREIGN KEY(ID) REFERENCES [HumanResources].[Employee](EmpID),
     HostelID INT NOT NULL, FOREIGN KEY (HostelID) REFERENCES [Department].[Hostel](ID),
 )
 
 CREATE TABLE [Department].[DeptCourse](
     ID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-    DepartmentID INT NOT NULL, FOREIGN KEY(DepartmentID) REFERENCES [Department].[Department](ID),
+    DepartmentID INT NOT NULL, FOREIGN KEY(DepartmentID) REFERENCES [Department].[Department](EmpID),
     CourseID INT NOT NULL, FOREIGN KEY(CourseID) REFERENCES [Department].[Course](ID),
     SemesterNo INT NOT NULL, CHECK(SemesterNo <= 6)
 )
@@ -280,7 +280,7 @@ REFERENCES [HumanResources].[Teacher](ID)
 ALTER TABLE [HumanResources].[Staff] ADD
 CONSTRAINT FK_Employee_Staff
 FOREIGN KEY (ID)
-REFERENCES [HumanResources].[Employee](ID)
+REFERENCES [HumanResources].[Employee](EmpID)
 
 ALTER TABLE [Department].[DeptCourse] ADD
 CONSTRAINT FK_Attendance_DeptCourse
