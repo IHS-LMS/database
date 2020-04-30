@@ -217,3 +217,89 @@ INSERT INTO [Department].[Group] VALUES  (1,3,'Dgroup')
 INSERT INTO [Department].[Group] VALUES  (3,4,'Ugroup')
 INSERT INTO [Department].[Group] VALUES  (2,1,'Pgroup')
 
+Insert INTO [Department].[ExamTimeTable]
+VALUES (1, '2','2012/04/06' ,'12:23:45'),
+       (2, '3','2012/04/06' ,'12:23:45'),
+       (3, '1','2012/04/06' ,'12:23:45'),
+       (4, '4','2012/04/06' ,'12:23:45'),
+       (5, '5','2012/04/06' ,'12:23:45'),
+       (6, '6','2012/04/06' ,'12:23:45'),
+       (7, '7','2012/04/06' ,'12:23:45'),
+       (8, '8','2012/04/06' ,'12:23:45'),
+       (9, '9','2012/04/06' ,'12:23:45'),
+       (10, '6','2012/04/06' ,'12:23:45');
+
+-- Note: Before adding data to [HumanResources].[Student] table, In the following queries Change the path of the photoes to the path 
+-- of photoes in your Computer
+INSERT INTO [HumanResources].[Student] 
+VALUES ('Naveed', 'Ghafoor', 'Haaji', 'Male','1997/03/14', 'k','Pashto', 'Afghan', '1752', '0705894305', '0702583057', 'naveed@gmail.com',
+       (SELECT * FROM OPENROWSET(BULK N'C:\Abdul Basir Z\All Urgent Staff\WallPaper/4.jpg', SINGLE_BLOB) as T1)),
+       ('Yasir', 'Abdul Saboor', 'Haaji Saab', 'Male','1997/03/14', 'k','Pashto', 'Afghan', '3233', '0700746878', '0702500000', 'Yasir@gmail.com', 
+       (SELECT * FROM OPENROWSET(BULK N'C:\Abdul Basir Z\All Urgent Staff\WallPaper/5.png', SINGLE_BLOB) as T1)),
+       ('Muhammad yasin', 'Muhammd Hassan', 'Haaji Saab', 'Male','1999/03/14', 'k','Pashto', 'Afghan', '97957', '0706930258', '0701206840', 'yasin@gmail.com',
+       (SELECT * FROM OPENROWSET(BULK N'C:\Abdul Basir Z\All Urgent Staff\WallPaper/5r.png', SINGLE_BLOB) as T1)),
+       ('Abdul Basir', 'Abdul Latif', 'Haaji Saab', 'Male','1998/10/26', 'k','Pashto', 'Afghan', '17524213', '0703787344', '0702682345', 'basir@gmail.com',
+       (SELECT * FROM OPENROWSET(BULK N'C:\Abdul Basir Z\All Urgent Staff\WallPaper/6.jpg', SINGLE_BLOB) as T1)),
+       ('Ehsanulla', 'Khan Muhammad', 'Haaji Saab', 'Male','1993/03/14', 'k','Pashto', 'Afghan', '8590385', '0709604248', '0706820684', 'ehsan@gmail.com',
+       (SELECT * FROM OPENROWSET(BULK N'C:\Abdul Basir Z\All Urgent Staff\WallPaper/7.jpg', SINGLE_BLOB) as T1)),
+       ('Muhammad Ibrahim', 'Shah Wali', 'Haaji Saab', 'Male','1996/03/14', 'h','Pashto', 'Afghan', '1752', '0705595325', '0709840385', 'ibrahim@gmail.com',
+       (SELECT * FROM OPENROWSET(BULK N'C:\Abdul Basir Z\All Urgent Staff\WallPaper/8.jpg', SINGLE_BLOB) as T1)),
+       ('Shah Ghasi', 'Niamatullah', 'Haaji Saab', 'Male','1998/03/14', 'h','Pashto', 'Afghan', '945895', '0703208583', '0705903850', 'shaghasi@gmail.com',
+       (SELECT * FROM OPENROWSET(BULK N'C:\Abdul Basir Z\All Urgent Staff\WallPaper/3.jpg', SINGLE_BLOB) as T1)),
+       ('Irfanullah', 'Mira Jan', 'Haaji Saab', 'Male','1999/03/14', 'F','Pashto', 'Afghan', '34085', '0706745368', '0702095127', 'irfanullah@gmail.com',
+       (SELECT * FROM OPENROWSET(BULK N'C:\Abdul Basir Z\All Urgent Staff\WallPaper/2.jpg', SINGLE_BLOB) as T1)),
+       ('Nasir Ahmad', 'Shabir Ahmad', 'Haaji Saab', 'Male','1997/03/14', 'P','Persian', 'Afghan', '346363636', '0705803559', '0700305867', 'nasir@gmail.com',
+       (SELECT * FROM OPENROWSET(BULK N'C:\Abdul Basir Z\All Urgent Staff\WallPaper/1.jpg', SINGLE_BLOB) as T1)),
+       ('Naveed', 'Ghafoor', 'Haaji', 'Male','1997/03/14', 'k','Pashto', 'Afghan', '1752', '0705894305', '0702583057', 'naveed@gmail.com',
+       (SELECT * FROM OPENROWSET(BULK N'C:\Abdul Basir Z\All Urgent Staff\WallPaper/4.jpg', SINGLE_BLOB) as T1));
+
+-- Note: Before adding data to [HumanResources].[SchoolBackground] table, In the following queries Change the path of the photoes to the path 
+-- of photoes in your Computer
+INSERT INTO [HumanResources].[SchoolBackground]
+VALUES ('2', 'Mirway Nika School', 'Sixth district', '2015/06/29',
+       (SELECT * FROM OPENROWSET(BULK N'C:\Abdul Basir Z\All Urgent Staff\WallPaper/4.jpg', SINGLE_BLOB) AS T1)),
+       ('3', 'Mushriqi High School', 'Third district', '2017/07/18',
+       (SELECT * FROM OPENROWSET(BULK N'C:\Abdul Basir Z\All Urgent Staff\WallPaper/4.jpg', SINGLE_BLOB) AS T1)),
+       ('4', 'Tajribawi high School', 'Fourth district', '2016/12/24',
+       (SELECT * FROM OPENROWSET(BULK N'C:\Abdul Basir Z\All Urgent Staff\WallPaper/4.jpg', SINGLE_BLOB) AS T1)),
+       ('5', 'Zahir Shahi School', 'Second district', '2018/05/17',
+       (SELECT * FROM OPENROWSET(BULK N'C:\Abdul Basir Z\All Urgent Staff\WallPaper/4.jpg', SINGLE_BLOB) AS T1)),
+       ('6', 'Mirways Nika School', 'Sixth district', '2014/06/28',
+       (SELECT * FROM OPENROWSET(BULK N'C:\Abdul Basir Z\All Urgent Staff\WallPaper/4.jpg', SINGLE_BLOB) AS T1)),
+       ('7', 'Malalay High School', 'Third district', '2017/08/29',
+       (SELECT * FROM OPENROWSET(BULK N'C:\Abdul Basir Z\All Urgent Staff\WallPaper/4.jpg', SINGLE_BLOB) AS T1)),
+       ('8', 'Mushriqi high School', 'Third district', '2018/03/23',
+       (SELECT * FROM OPENROWSET(BULK N'C:\Abdul Basir Z\All Urgent Staff\WallPaper/4.jpg', SINGLE_BLOB) AS T1)),
+       ('9', 'Tajribawi high School', 'Fourth district', '2018/06/27',
+       (SELECT * FROM OPENROWSET(BULK N'C:\Abdul Basir Z\All Urgent Staff\WallPaper/4.jpg', SINGLE_BLOB) AS T1)),
+       ('10', 'Mirways Nika School', 'Sixth district', '2015/06/26',
+       (SELECT * FROM OPENROWSET(BULK N'C:\Abdul Basir Z\All Urgent Staff\WallPaper/4.jpg', SINGLE_BLOB) AS T1));
+
+INSERT INTO [Department].[Attendance]
+VALUES ('1', '2', '2020/03/1', '25', '3', '2', '1'),
+       ('2', '2', '2020/03/1', '25', '3', '2', '1'),
+       ('3', '2', '2020/03/1', '25', '3', '2', '1'),
+       ('4', '2', '2020/03/1', '25', '3', '2', '1'),
+       ('5', '2', '2020/03/1', '25', '3', '2', '1'),
+       ('6', '2', '2020/03/1', '25', '3', '2', '1'),
+       ('7', '2', '2020/03/1', '25', '3', '2', '1'),
+       ('8', '2', '2020/03/1', '25', '3', '2', '1'),
+       ('9', '2', '2020/03/1', '25', '3', '2', '1'),
+       ('10', '2', '2020/03/1', '25', '3', '2', '1');
+       
+-- In order to add data to the [Department].[TimeTable] table, Data first must exist in the following tables.
+-- [Department].[Attendance], [Department].[Course], [Department].[Department],[HumanResources].[Teacher], [Department].[DeptCourse]
+INSERT INTO [Department].[TimeTable]
+VALUES ('1', '1', 'Saturday', '20:30:00', '22:10:00' ),
+       ('2', '2', 'Saturday', '22:20:00', '00:00:00' ),
+       ('3', '3', 'Sunday', '20:30:00', '22:10:00' ),
+       ('4', '4', 'Sunday', '22:20:00', '00:00:00' ),
+       ('5', '5', 'Monday', '20:30:00', '22:10:00' ),
+       ('1', '1', 'Monday', '22:20:00', '00:00:00' ),
+       ('3', '3', 'Tuesday', '20:30:00', '22:10:00' ),
+       ('2', '2', 'Tuesday', '22:20:00', '00:00:00' ),
+       ('4', '4', 'Wednesday', '20:30:00', '22:10:00' ),
+       ('5', '5', 'Wednesday', '22:20:00', '00:00:00' );
+
+
+
