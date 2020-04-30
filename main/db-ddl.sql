@@ -20,7 +20,7 @@ CREATE TABLE [HumanResources].[Student](
     GrandFatherName NVARCHAR(50) NOT NULL,
     Gender NVARCHAR(50) NOT NULL, CHECK(Gender in ('Male', 'Female', 'Other')),
     DOB DATE NOT NULL, CHECK(DATEDIFF(YEAR, DOB, GETDATE()) <= 35 AND DATEDIFF(YEAR, DOB, GETDATE()) >= 18),
-    POB NVARCHAR NOT NULL,
+    POB NVARCHAR(50) NOT NULL,
     NativeLanguage NVARCHAR(50) NOT NULL,
     Nationality NVARCHAR(50) NOT NULL,
     NID INT NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE [HumanResources].[Staff](
 )
 
 CREATE TABLE [HumanResources].[Employee](
-    ID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    EmpID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
     Email NVARCHAR(50) NOT NULL, CHECK(Email LIKE '%@%.%')
 )
 
@@ -56,7 +56,7 @@ CREATE TABLE [HumanResources].[Teacher](
 )
 
 CREATE TABLE [HumanResources].[Health](
-    ID INT IDENTITY(1,1) PRIMARY KEY NOT NULL, FOREIGN KEY(ID) REFERENCES [HumanResources].[Student](ID),
+    ID INT PRIMARY KEY NOT NULL, FOREIGN KEY(ID) REFERENCES [HumanResources].[Student](ID),
     BloodGroup NVARCHAR(50) NOT NULL, CHECK(BloodGroup IN ('A-', 'A+', 'B-', 'B+', 'AB+', 'AB-', 'O-', 'O+')),
     HIV BINARY NOT NULL,
     HepatitisB BINARY NOT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE [HumanResources].[Job](
 )
 
 CREATE TABLE [HumanResources].[SchoolBackground](
-    ID INT IDENTITY(1,1) PRIMARY KEY NOT NULL, FOREIGN KEY(StudentID) REFERENCES [HumanResources].[Student](ID),
+    ID INT PRIMARY KEY NOT NULL, FOREIGN KEY(StudentID) REFERENCES [HumanResources].[Student](ID),
     StudentID INT NOT NULL,
     SchoolName NVARCHAR(50) NOT NULL,
     SchoolLocation NVARCHAR(50) NOT NULL,
@@ -89,7 +89,7 @@ CREATE TABLE [HumanResources].[SchoolBackground](
 ) 
 
 CREATE TABLE [HumanResources].[Address](
-    ID INT IDENTITY(1,1) PRIMARY KEY NOT NULL, FOREIGN KEY(ID) REFERENCES [HumanResources].[Student](ID),
+    ID INT PRIMARY KEY NOT NULL, FOREIGN KEY(ID) REFERENCES [HumanResources].[Student](ID),
     Province NVARCHAR(50) NOT NULL,
     District NVARCHAR(50) NOT NULL,
     StreetNo INT NOT NULL,
@@ -100,7 +100,7 @@ CREATE TABLE [Department].[Attendance](
     ID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
     StudentID INT NOT NULL, FOREIGN KEY(StudentID) REFERENCES [HumanResources].[Student](ID),
     DeptCourseID INT NOT NULL,
-    AttendanceDate INT NOT NULL,
+    AttendanceDate DATE NOT NULL,
     PresentDays INT NOT NULL,
     AbsentDays INT NOT NULL,
     OffDays INT NOT NULL,
@@ -192,7 +192,7 @@ CREATE TABLE [Department].[Room](
 )
 
 CREATE TABLE [Department].[HostelEmployee](
-    ID INT IDENTITY(1,1) PRIMARY KEY NOT NULL, FOREIGN KEY(ID) REFERENCES [HumanResources].[Employee](ID),
+    ID INT PRIMARY KEY NOT NULL, FOREIGN KEY(ID) REFERENCES [HumanResources].[Employee](ID),
     HostelID INT NOT NULL, FOREIGN KEY (HostelID) REFERENCES [Department].[Hostel](ID),
 )
 
@@ -207,7 +207,7 @@ CREATE TABLE [Department].[ExamTimeTable](
     ID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
     CourseID INT NOT NULL, FOREIGN KEY(CourseID) REFERENCES [Department].[Course](ID),
     TeacherID INT NOT NULL, FOREIGN KEY(TeacherID) REFERENCES [HumanResources].[Teacher](ID),
-    ExamDate DATE NOT NULL, CHECK(DATEDIFF(DAY, GETDATE(), ExamDate) > 0),
+    ExamDate DATE NOT NULL, CHECK(DATEDIFF(DAY, ExamDate, GETDATE(), ExamDate) > 0),
     ExamTime TIME NOT NULL,
 )
 
@@ -249,7 +249,7 @@ CREATE TABLE [Department].[Group](
 )
 
 CREATE TABLE [Department].[NightShift](
-    ID INT IDENTITY(1,1) PRIMARY KEY NOT NULL, FOREIGN KEY(ID) REFERENCES [Department].[Group](ID),
+    ID INT PRIMARY KEY NOT NULL, FOREIGN KEY(ID) REFERENCES [Department].[Group](ID),
     TeacherID INT NOT NULL, FOREIGN KEY(TeacherID) REFERENCES [HumanResources].[Teacher](ID),
     NightShiftDate DATE NOT NULL
 )
@@ -262,7 +262,7 @@ CREATE TABLE [Department].[Coordinator](
 )
 
 CREATE TABLE [Department].[Enrollment](
-    ID INT IDENTITY(1,1) PRIMARY KEY NOT NULL, FOREIGN KEY(ID) REFERENCES [HumanResources].[Student](ID),
+    ID INT PRIMARY KEY NOT NULL, FOREIGN KEY(ID) REFERENCES [HumanResources].[Student](ID),
     DepartmentID INT NOT NULL, FOREIGN KEY(DepartmentID) REFERENCES [Department].[Department](ID),
     EnrollDate DATE NOT NULL
 )
