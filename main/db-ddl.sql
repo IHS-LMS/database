@@ -15,6 +15,7 @@ GO;
 
 CREATE TABLE [HumanResources].[Student](
     ID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    KankoorID INT NOT NULL,
     FullName NVARCHAR(50) NOT NULL,
     FatherName NVARCHAR(50) NOT NULL,
     GrandFatherName NVARCHAR(50) NOT NULL,
@@ -34,6 +35,7 @@ CREATE TABLE [HumanResources].[Staff](
     ID INT IDENTITY(1,1) PRIMARY KEY NOT NULL, 
     FullName NVARCHAR(50) NOT NULL,
     LastName NVARCHAR(50) NOT NULL,
+    ActiveDegree NVARCHAR(50) NOT NULL,
     Gender NVARCHAR(50) NOT NULL, CHECK(Gender in ('Male', 'Female', 'Other')),
     DOB DATE NOT NULL, CHECK(DATEDIFF(YEAR, DOB, GETDATE()) >= 18 AND DATEDIFF(YEAR, DOB, GETDATE()) <= 65),
     POB NVARCHAR NOT NULL,
@@ -42,7 +44,8 @@ CREATE TABLE [HumanResources].[Staff](
     NID INT NOT NULL,
     CellPhone NVARCHAR(50) NOT NULL, CHECK (CellPhone LIKE '[0][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
     HireDate DATE NOT NULL,
-    Photo VARBINARY(MAX) NOT NULL
+    Photo VARBINARY(MAX) NOT NULL,
+    Maktoob VARBINARY(MAX) NOT NULL
 )
 
 CREATE TABLE [HumanResources].[Employee](
@@ -118,17 +121,6 @@ CREATE TABLE [Department].[EducationalRank](
     RankName NVARCHAR(50) NOT NULL,
     RankDate DATE NOT NULL, CHECK(DATEDIFF(DAY, RankDate, GETDATE()) > 0)
 ) 
-
-CREATE TABLE [Department].[Experience](
-    ID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-    StaffID INT NOT NULL, FOREIGN KEY(StaffID) REFERENCES [HumanResources].[Staff](ID),
-    OrganizationName NVARCHAR(50) NOT NULL,
-    OrganizationLocation NVARCHAR(50) NOT NULL,
-    StartDate DATE NOT NULL,
-    EndDate DATE NOT NULL, CHECK(DATEDIFF(MONTH, StartDate, EndDate) > 0),
-    OrganizationEmail NVARCHAR(50) NOT NULL, CHECK(OrganizationEmail LIKE '%@%.%'),
-    OrganizationCell NVARCHAR(50) NOT NULL, CHECK (OrganizationCell LIKE '[0][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
-)
 
 CREATE TABLE [Department].[EducationalBackground](
     ID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
