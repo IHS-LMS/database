@@ -78,6 +78,8 @@ CREATE TABLE [HumanResources].[Job](
     StudentID INT NOT NULL, FOREIGN KEY(StudentID) REFERENCES [HumanResources].[Student](ID),
     HireDate DATE NOT NULL,
     Office NVARCHAR(50) NOT NULL,
+    OfficeEmail NVARCHAR(50) NOT NULL, CHECK(Email LIKE '%@%.%'),
+    OfficeCellNumber NVARCHAR(50), CHECK(CellPhone LIKE '[0][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
     Position NVARCHAR(50) NOT NULL,
     Province NVARCHAR(50) NOT NULL
 )
@@ -207,6 +209,9 @@ CREATE TABLE [Score].[Score](
     ID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
     StudentID INT NOT NULL, FOREIGN KEY(StudentID) REFERENCES [HumanResources].[Student](ID),
     TimeTableID INT NOT NULL, FOREIGN KEY(TimeTableID) REFERENCES [Department].[ExamTimeTable](ID),
+    EducationalYear INT NOT NULL,
+    Semester INT NOT NULL, CHECK(Semester IN ('First', 'Second'),
+    ExamDate DATE NOT NULL,
     --Chance Max Count
     Chance INT NOT NULL, CHECK(Chance <= 2)
 )
