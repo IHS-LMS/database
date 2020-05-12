@@ -38,7 +38,7 @@ CREATE TABLE [HumanResources].[Staff](
     ActiveDegree NVARCHAR(50) NOT NULL,
     Gender NVARCHAR(50) NOT NULL, CHECK(Gender in ('Male', 'Female', 'Other')),
     DOB DATE NOT NULL, CHECK(DATEDIFF(YEAR, DOB, GETDATE()) >= 18 AND DATEDIFF(YEAR, DOB, GETDATE()) <= 65),
-    POB NVARCHAR NOT NULL,
+    POB NVARCHAR(50) NOT NULL,
     NativeLanguage NVARCHAR(50) NOT NULL,
     Nationality NVARCHAR(50) NOT NULL,
     NID INT NOT NULL,
@@ -212,7 +212,7 @@ CREATE TABLE [Score].[Score](
     EducationalYear NVARCHAR(10) NOT NULL, CHECK(Semester IN ('First', 'Second'),
     Semester NVARCHAR(10) NOT NULL, CHECK(Semester IN ('First', 'Second'),
     ExamDate DATE NOT NULL,
-    Chance INT NOT NULL, CHECK(Chance <= 3)
+    Chance NVARCHAR(10) NOT NULL, CHECK(Chance IN ('First', 'Second', 'Third'))
 )
 
 CREATE TABLE [Score].[ScoreDetails](
