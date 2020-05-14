@@ -197,6 +197,20 @@ CREATE TABLE [Department].[DeptCourse](
     SemesterNo INT NOT NULL, CHECK(SemesterNo <= 6)
 )
 
+CREATE TABLE [Department].[ManageTimeTable](
+    ID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    DeptCourseID INT NOT NULL, FOREIGN KEY(DeptCourseID) REFERENCES [Department].[DeptCourse](ID),
+    TeacherID INT NOT NULL, FOREIGN KEY(TeacherID) REFERENCES [HumanResources].[Teacher](ID),
+    TDays INT NOT NULL,
+    StartTime TIME NOT NULL,
+    EndTime TIME NOT NULL
+)
+
+CREATE TABLE [Department].[ShowTimeTable](
+    ID INT PRIMARY KEY NOT NULL, FOREIGN KEY(ID) REFERENCES [Department].[ManageTimeTable](ID),
+    OnDate DATE NOT NULL
+)
+
 CREATE TABLE [Department].[ExamTimeTable](
     ID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
     CourseID INT NOT NULL, FOREIGN KEY(CourseID) REFERENCES [Department].[Course](ID),
