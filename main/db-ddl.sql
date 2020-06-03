@@ -1,17 +1,17 @@
 CREATE DATABASE KIHS
-GO;
+GO
 
 USE KIHS
-GO;
+GO
 
 CREATE SCHEMA HumanResources
-GO;
+GO
 
 CREATE SCHEMA Department
-GO;
+GO
 
 CREATE SCHEMA Score
-GO;
+GO
 
 CREATE TABLE [HumanResources].[Student](
     ID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
@@ -192,7 +192,7 @@ CREATE TABLE [Department].[HostelEmployee](
 
 CREATE TABLE [Department].[DeptCourse](
     ID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-    DepartmentID INT NOT NULL, FOREIGN KEY(DepartmentID) REFERENCES [Department].[Department](EmpID),
+    DepartmentID INT NOT NULL, FOREIGN KEY(DepartmentID) REFERENCES [Department].[Department](ID),
     CourseID INT NOT NULL, FOREIGN KEY(CourseID) REFERENCES [Department].[Course](ID),
     SemesterNo INT NOT NULL, CHECK(SemesterNo <= 6)
 )
@@ -215,7 +215,7 @@ CREATE TABLE [Department].[ExamTimeTable](
     ID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
     CourseID INT NOT NULL, FOREIGN KEY(CourseID) REFERENCES [Department].[Course](ID),
     TeacherID INT NOT NULL, FOREIGN KEY(TeacherID) REFERENCES [HumanResources].[Teacher](ID),
-    ExamDate DATE NOT NULL, CHECK(DATEDIFF(DAY, ExamDate, GETDATE(), ExamDate) > 0),
+    ExamDate DATE NOT NULL, CHECK(DATEDIFF(DAY, ExamDate, GETDATE()) > 0),
     ExamTime TIME NOT NULL,
 )
 
@@ -223,8 +223,8 @@ CREATE TABLE [Score].[Score](
     ID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
     StudentID INT NOT NULL, FOREIGN KEY(StudentID) REFERENCES [HumanResources].[Student](ID),
     TimeTableID INT NOT NULL, FOREIGN KEY(TimeTableID) REFERENCES [Department].[ExamTimeTable](ID),
-    EducationalYear NVARCHAR(10) NOT NULL, CHECK(Semester IN ('First', 'Second'),
-    Semester NVARCHAR(10) NOT NULL, CHECK(Semester IN ('First', 'Second'),
+    EducationalYear NVARCHAR(10) NOT NULL, CHECK(EducationalYear IN ('First', 'Second')),
+    Semester NVARCHAR(10) NOT NULL, CHECK(Semester IN ('First', 'Second')),
     ExamDate DATE NOT NULL,
     Chance NVARCHAR(10) NOT NULL, CHECK(Chance IN ('First', 'Second', 'Third'))
 )
